@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>event</title>
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{total}}</p>
+      <!-- 组件复用 -->
+      <!-- 自定义事件（变化从子件传过来） -->
+      <counter v-on:increment="increment"></counter>
+      <counter v-on:increment="increment"></counter>
+    </div>
+    <script>
+      // 定义组件
+      let child = {
+        // 子件设置点击事件
+        template: "<button v-on:click='add'>{{counter}}</button>",
+        data() {
+          return {
+            counter: 0,
+          };
+        },
+        methods: {
+          add() {
+            this.counter += 1;
+            // 把子件的方法与父件的方法绑定在一起
+            this.$emit("increment");
+          },
+        },
+      };
+      let vm = new Vue({
+        el: "#app",
+        components: {
+          counter: child,
+        },
+        data() {
+          return {
+            total: 0,
+          };
+        },
+        methods: {
+          increment() {
+            this.total += 1;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

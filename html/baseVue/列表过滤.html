@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>列表过滤</title>
+    <script src="/js/config/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        <h1>侦听属性完成过滤</h1>
+        <input type="text" placeholder="请输入姓名" v-model="keywords" />
+        <ul>
+          <li v-for="(item,index) in filtersPersons" :key="item.id">
+            {{item.name}}---{{item.age}}---{{item.sex}}
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h1>计算属性完成</h1>
+        <input type="text" placeholder="请输入姓名" v-model="kw" />
+        <ul>
+          <li v-for="(item,index) in personsFilters" :key="item.id">
+            {{item.name}}---{{item.age}}---{{item.sex}}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data() {
+          return {
+            persons: [
+              { id: 10001, name: "周杰伦", age: 25, sex: "男" },
+              { id: 10002, name: "周冬雨", age: 25, sex: "女" },
+              { id: 10003, name: "温兆伦", age: 25, sex: "男" },
+              { id: 10004, name: "马冬梅", age: 25, sex: "女" },
+            ],
+            keywords: "",
+            kw: "",
+            filtersPersons: "",
+          };
+        },
+        // 侦听属性完成过滤
+        watch: {
+          keywords: {
+            // 初始化时立即执行
+            immediate: true,
+            // 调用是执行的函数
+            handler(val) {
+              this.filtersPersons = this.persons.filter((item) => {
+                return item.name.indexOf(val) != -1;
+              });
+            },
+          },
+        },
+        // 计算属性完成
+        computed: {
+          personsFilters() {
+            return this.persons.filter((item) => {
+              return item.name.indexOf(this.kw) != -1;
+            });
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

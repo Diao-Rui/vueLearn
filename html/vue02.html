@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- v-html等同于HTML的属性innerHTML能够解析字符串中的标签 -->
+      <div v-html="fun()"></div>
+      <!-- v-text会原封不动的输出字符串 -->
+      <div v-text="fun()"></div>
+      <!-- {{}}取值也是原封不动的取字符串 -->
+      <div>{{fun()}}</div>
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data() {
+          return {
+            person: {
+              id: new Date().getTime(),
+              name: "zhangsan",
+              age: 18,
+              sex: "man",
+              weight: 100,
+            },
+          };
+        },
+        methods: {
+          fun: function () {
+            let html = "<ul>";
+            //获取data中的元素必须使用this指针
+            //使用箭头函数没法在这里使用this
+            //for in获得的是他的键而不是值
+            for (item in this.person) {
+              html += "<li>" + this.person[item] + "</li>";
+            }
+            html += "</ul>";
+            return html;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

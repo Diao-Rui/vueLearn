@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- vue对象和元素双向绑定，两边的值同时更新 -->
+      <input type="text" v-model="msg" />
+      <!-- vue计算属性，当msg更新时触发 -->
+      <p>{{fz}}</p>
+    </div>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            msg: "",
+          };
+        },
+        computed: {
+          fz: function () {
+            return this.msg.split("").reverse().join("");
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

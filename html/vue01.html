@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>无序列表</p>
+      <!-- 建立一个无序列表 -->
+      <ul>
+        <li>{{data.name}}</li>
+        <li>{{data.age}}</li>
+        <li>{{data.sex}}</li>
+      </ul>
+      <p>有序列表</p>
+      <!-- 建立一个有序列表 -->
+      <ol>
+        <li>{{data.name}}</li>
+        <li>{{data.age}}</li>
+        <li>{{data.sex}}</li>
+      </ol>
+      <p>方法调用</p>
+      <!-- 需要使用（）调用代表它是一个函数 -->
+      <p>{{fun()}}</p>
+    </div>
+    <script>
+      //创建一个对象
+      const data = { name: "xd", age: 15, sex: "man" };
+      //创建一个vue实例
+      const vm = new Vue({
+        //把APP的DOM挂载到vue中
+        el: "#app",
+        //数据对象中加入对象
+        data: data,
+        methods: {
+          fun: function () {
+            return data;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

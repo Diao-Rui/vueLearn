@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="/js/config/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 绑定变量 -->
+      <div class="basic" :class="mood" @click="change">点我改变心情</div>
+      <!-- 绑定数组 -->
+      <div class="basic" :class="ants">多样式标签</div>
+      <!-- 绑定对象 -->
+      <div class="basic" :class="ant">多样式标签</div>
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data() {
+          return {
+            mood: "happy",
+            moods: ["happy", "sad", "normal"],
+            ants: ["ant1", "ant2", "ant3"],
+            ant: {
+              ant1: true,
+              ant2: true,
+              ant3: false,
+            },
+          };
+        },
+        methods: {
+          change() {
+            this.mood = this.moods[Math.floor(Math.random() * 3)];
+          },
+        },
+      });
+    </script>
+  </body>
+  <style>
+    .basic {
+      width: 300px;
+      height: 200px;
+      border: 1px solid black;
+      margin: auto;
+    }
+    .happy {
+      background-color: aqua;
+    }
+    .sad {
+      background-color: blue;
+    }
+    .normal {
+      background-color: aquamarine;
+    }
+    .ant1 {
+      background-color: blue;
+    }
+    .ant2 {
+      border-radius: 5%;
+    }
+    .ant3 {
+      font-size: 25px;
+    }
+  </style>
+</html>

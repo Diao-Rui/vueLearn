@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>model</title>
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- model中默认有value和input事件 -->
+      <myinput v-model="msg"></myinput>
+      <p>输入的信息为:{{msg}}</p>
+      <input type="checkbox" v-model="flag" />
+      <div v-show="flag">选中复选框我就会出现</div>
+    </div>
+    <script>
+      let myinput = {
+        props: ["value"],
+        template: ` <p>   <!-- 包含了名为 input 的事件 -->
+      <input
+       ref="input"
+       :value="value" 
+       @input="$emit('input', $event.target.value)"
+      >
+    </p>`,
+      };
+      let vm = new Vue({
+        el: "#app",
+        components: {
+          myinput: myinput,
+        },
+        data() {
+          return {
+            flag: true,
+            msg: "hello world",
+          };
+        },
+      });
+    </script>
+  </body>
+</html>

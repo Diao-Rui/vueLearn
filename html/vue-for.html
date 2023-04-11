@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        <p>v-for遍历对象</p>
+        <ul>
+          <li v-for="(value,key,index) in person">{{key}}:{{value}}</li>
+        </ul>
+      </div>
+      <div>
+        <p>v-for遍历数组</p>
+        <ul>
+          <li v-for="(item,index) in array">[{{index}}]:{{item}}</li>
+        </ul>
+      </div>
+      <div>
+        <p>v-for遍历数字</p>
+        <ul>
+          <li v-for="item in number">{{item}}</li>
+        </ul>
+      </div>
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data() {
+          return {
+            person: {
+              id: new Date().getTime(),
+              name: "lishi",
+              age: 15,
+              ocuption: "worker",
+            },
+            array: ["lucy", "jome", "pool", "jodon", "yuhan", "poluo"],
+            number: 5,
+          };
+        },
+      });
+    </script>
+  </body>
+</html>

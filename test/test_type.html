@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>form</title>
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <template>
+        <div>
+          <p>name</p>
+          <!-- 加入lazy之后就是变化是change才更新不再是实时刷新 -->
+          <input type="text" v-model.lazy="person.name" />
+          <p>sex</p>
+          <!-- 单选框的值取决于他的value -->
+          <input type="radio" id="man" value="男生" v-model="person.sex" />
+          <!-- label标签的for指向他的父元素的ID -->
+          <label for="man">男</label>
+          <br />
+          <input type="radio" id="women" value="女生" v-model="person.sex" />
+          <label for="women">女</label>
+          <p>兴趣爱好</p>
+          <!-- 复选框CheckBox也是如此 -->
+          <input
+            type="checkbox"
+            id="basketball"
+            value="篮球"
+            v-model="person.interests"
+          />
+          <label for="basketball">篮球</label>
+          <input
+            type="checkbox"
+            id="pin"
+            value="乒乓球"
+            v-model="person.interests"
+          />
+          <label for="pin">乒乓球</label>
+          <input
+            type="checkbox"
+            id="wq"
+            value="网球"
+            v-model="person.interests"
+          />
+          <label for="wq">网球</label>
+          <input
+            type="checkbox"
+            id="ymq"
+            value="羽毛球"
+            v-model="person.interests"
+          />
+          <label for="ymq">羽毛球</label>
+          <!-- 在选择框上绑定model，然后选中某一个选项即可获得他的value -->
+          <p>大学</p>
+          <select v-model="person.school">
+            <!-- disabled代表不能被选择 -->
+            <option value="" disabled>请选择学校</option>
+            <option value="清华大学">清华大学</option>
+            <option value="北京大小">北京大学</option>
+            <option value="上海交通大学">上海交通大学</option>
+            <option value="浙江大学">浙江大学</option>
+            <option value="南京大学">南京大学</option>
+          </select>
+        </div>
+        <div v-show="person.name!==''">
+          <ul>
+            <li v-for="item in person">{{item}}</li>
+          </ul>
+        </div>
+      </template>
+    </div>
+    <script>
+      let vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            person: {
+              id: new Date().getTime(),
+              name: "",
+              sex: "",
+              interests: [],
+              school: "",
+            },
+          };
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="/js/config/vue.js"></script>
+
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2>今天天气很{{info}}</h2>
+      <button @click="change">切换天气</button>
+      <!-- 实现简单语句可以 -->
+      <button @click="isHot=!isHot">切换天气</button>
+      <hr />
+      <h2>a的值为:{{numbers.a}}</h2>
+      <button @click="numbers.a++">点我a++</button>
+    </div>
+    <script>
+      Vue.config.productionTip = false;
+      var vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            isHot: true,
+            numbers: {
+              a: 0,
+              b: 0,
+            },
+          };
+        },
+        computed: {
+          info() {
+            return this.isHot ? "炎热" : "凉爽";
+          },
+        },
+        methods: {
+          change() {
+            this.isHot = !this.isHot;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

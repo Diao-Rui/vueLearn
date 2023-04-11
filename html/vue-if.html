@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p v-if="person.length>0">满足成年人的有：</p>
+      <p v-else>没有人满足条件</p>
+      <div v-for="(item,index) in person">
+        <ul v-if="item.age>=18&&item.age<150">
+          <li v-for="(value,key,index) in item">{{key}} : {{value}}</li>
+        </ul>
+      </div>
+    </div>
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data() {
+          return {
+            person: [
+              {
+                id: new Date().getTime(),
+                name: "zhangsan",
+                age: 18,
+                sex: "man",
+              },
+              {
+                id: new Date().getTime(),
+                name: "lishi",
+                age: 19,
+                sex: "man",
+              },
+              {
+                id: new Date().getTime(),
+                name: "lucy",
+                age: 21,
+                sex: "woman",
+              },
+              {
+                id: new Date().getTime(),
+                name: "kali",
+                age: 15,
+                sex: "woman",
+              },
+            ],
+          };
+        },
+      });
+    </script>
+  </body>
+</html>

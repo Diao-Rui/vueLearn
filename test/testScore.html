@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../../js/config/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <table>
+        <tr>
+          <th>姓名</th>
+          <th>分数</th>
+        </tr>
+        <tr v-for="(student,index) in students" ::key="index">
+          <td v-for="item in student" :key="item">{{item}}</td>
+        </tr>
+      </table>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            students: [
+              { name: "刁广", score: 33 },
+              { name: "朱纭蝶", score: 45 },
+              { name: "翟天雅", score: 34 },
+              { name: "陈浩", score: 25 },
+              { name: "陈雨哲", score: 20 },
+              { name: "高光明", score: 43 },
+              { name: "李佳一", score: 61 },
+              { name: "刘昭仪", score: 40 },
+              { name: "吕思颖", score: 49 },
+              { name: "茅天华", score: 17 },
+              { name: "全哲", score: 16 },
+              { name: "邱浩清", score: 15 },
+              { name: "邵鹏程", score: 37 },
+              { name: "宋成成", score: 23 },
+              { name: "王赫", score: 54 },
+              { name: "武晓雪", score: 29 },
+              { name: "徐玉佳", score: 38 },
+              { name: "余波", score: 23 },
+              { name: "喻伟", score: 33 },
+              { name: "张梦洋", score: 10 },
+              { name: "殷龙文", score: 16 },
+              { name: "钟洁", score: 20 },
+              { name: "朱佳伟", score: 25 },
+              { name: "杨小琳", score: 29 },
+            ],
+          };
+        },
+      });
+    </script>
+  </body>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 500px;
+      text-align: center;
+      margin: auto;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid black;
+      font-size: large;
+    }
+  </style>
+</html>

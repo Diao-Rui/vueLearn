@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>base</title>
+    <script src="/js/config/vue.js"></script>
+  </head>
+  <body>
+    <!-- 创建容器 -->
+    <!-- 插值语法 -->
+    <div id="app">
+      <p>{{name.toUpperCase()}}</p>
+      <p>{{15*25*3}}</p>
+      <p>{{age}}</p>
+      <!-- 普通标签（为绑定vue指令） -->
+      <a href="http://www.atguigu.com">跳转</a>
+      <!-- 绑定vue指令的属性 -->
+      <a :href="url">跳转</a>
+      <!-- 自定义vue指令的属性 -->
+      <a :href="url" v-bind:hello="hello">跳转</a>
+    </div>
+    <script>
+      // 创建vue实例
+      let vm = new Vue({
+        // 实例与容器一一绑定
+        el: "#app",
+        // 存放数据，数据供实例的容器使用
+        data() {
+          return {
+            name: "sjtu",
+            age: 100,
+            url: "http://www.atguigu.com",
+            hello: "hello world",
+          };
+        },
+      });
+    </script>
+  </body>
+</html>

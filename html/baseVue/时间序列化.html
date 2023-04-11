@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="/js/config/vue.js"></script>
+    <script src="/js/config/dayjs.min.js"></script>
+
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <p>当前的时间为:{{time}}</p>
+      <p>（计算属性）当前的时间为:{{fmtime}}</p>
+      <p>（方法）当前的时间为:{{getFmtime()}}</p>
+      <p>（过滤器）当前的时间为:{{time | timeFormatter}}</p>
+      <p>（过滤器）当前的时间为:{{time | timeFormatter()}}</p>
+
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data() {
+          return {
+            time: new Date().getTime(),
+          };
+        },
+        computed: {
+          fmtime() {
+            return dayjs(this.time).format("YYYY年MM月DD日 HH:mm:ss");
+          },
+        },
+        methods: {
+          getFmtime() {
+            return dayjs(this.time).format("YYYY年MM月DD日 HH:mm:ss");
+          },
+        },
+        filters: {
+          timeFormatter(val) {
+            return dayjs(val).format("YYYY年MM月DD日 HH:mm:ss");
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

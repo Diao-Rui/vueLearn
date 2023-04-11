@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <hello></hello>
+      <!-- 可以直接在本文件中运用或者是包含该组件的地方运用 -->
+      <!-- 静态绑定，msg不能传入对象 -->
+      <world msg="你好，China"></world>
+      <!-- 动态绑定，msg中可以传入vue对象实现数据更新 -->
+      <world v-bind:msg="msg"></world>
+    </div>
+    <script>
+      //全局注册组件
+      //组件名称一般需要小写
+      Vue.component("hello", {
+        template: "<h1>这是自定义组件</h1>",
+      });
+      //局部注册组件
+      let child = {
+        // 定义接收对象，prop是一个列表，里面可以有很多对象，都是来自父组件传给子组件的
+        props: ["msg"],
+        template: "<h2>{{msg}}</h2>",
+      };
+      let vm = new Vue({
+        el: "#app",
+        // 导入子组件
+        components: {
+          world: child,
+        },
+        data() {
+          return {
+            msg: "red",
+          };
+        },
+        methods: {},
+      });
+    </script>
+  </body>
+</html>

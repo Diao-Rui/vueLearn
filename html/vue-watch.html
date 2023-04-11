@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>watch</title>
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>米制转化器</p>
+      <div>
+        千米 : <input type="text" v-model="kilometers" /> 米 :
+        <input type="text" v-model="meters" />
+        <p></p>
+        <p></p>
+      </div>
+      <div>
+        <p>克制转化器</p>
+        千克 : <input type="text" v-model="kilogram" /> 克 :
+        <input type="text" v-model="gram" />
+        <p></p>
+        <p></p>
+      </div>
+    </div>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            kilometers: 0,
+            meters: 0,
+            kilogram: 0,
+            gram: 0,
+            msg: "",
+          };
+        },
+        //设置侦听器
+        watch: {
+          kilometers: function (val) {
+            this.kilometers = val;
+            this.meters = val * 1000;
+          },
+          meters: function (val) {
+            this.meters = val;
+            this.kilometers = val / 1000;
+          },
+          kilogram: function (val) {
+            (this.kilogram = val), (this.gram = val * 1000);
+          },
+          gram: function (val) {
+            (this.gram = val), (this.kilogram = val / 1000);
+          },
+        },
+      });
+      //调用vue封装的全局方法（监听的变量，触发时的函数(新值，旧值)）
+      vm.$watch("kilometers", (newValue, oldValue) => {
+        document.getElementsByTagName("p")[1].innerHTML =
+          "修改前值为: " + oldValue + "，修改后值为: " + newValue;
+      });
+      vm.$watch("meters", (newValue, oldValue) => {
+        document.getElementsByTagName("p")[2].innerHTML =
+          "修改前值为: " + oldValue + "，修改后值为: " + newValue;
+      });
+      //调用vue封装的全局方法（监听的变量，触发时的函数）
+      vm.$watch("kilogram", (newValue, oldValue) => {
+        document.getElementsByTagName("p")[4].innerHTML =
+          "修改前值为: " + oldValue + "，修改后值为: " + newValue;
+      });
+      vm.$watch("gram", (newValue, oldValue) => {
+        document.getElementsByTagName("p")[5].innerHTML =
+          "修改前值为: " + oldValue + "，修改后值为: " + newValue;
+      });
+    </script>
+  </body>
+</html>

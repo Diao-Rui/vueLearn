@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="/js/config/vue.js"></script>
+    <title>生命周期</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1 :style="{opacity}">hello world</h1>
+      <h2>{{opacity}}</h2>
+      <button @click="del">点我干掉vm</button>
+    </div>
+  </body>
+  <script>
+    new Vue({
+      el: "#app",
+      data() {
+        return {
+          opacity: 1,
+          name: "hello world",
+          id: "",
+        };
+      },
+      methods: {
+        del() {
+          this.$destroy();
+        },
+      },
+      beforeCreate() {
+        console.log("beforeCreate");
+      },
+      created() {
+        console.log("created");
+      },
+      beforeMount() {
+        console.log("beforeMount");
+      },
+      mounted() {
+        // 设置定时器
+        this.id = setInterval(() => {
+          this.opacity -= 0.01;
+          console.log("setInterval");
+          if (this.opacity <= 0) this.opacity = 1;
+        }, 16);
+      },
+      beforeUpdate() {
+        console.log("beforeUpdate");
+      },
+      updated() {
+        console.log("updated");
+      },
+      beforeDestroy() {
+        console.log("beforeDestroy");
+        // 清除定时器
+        clearInterval(this.id);
+      },
+      destroyed() {
+        console.log("destroyed");
+      },
+    });
+  </script>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>property</title>
+  </head>
+  <body>
+    <script>
+      let number = 18;
+      let person = {
+        name: "zhangsan",
+        sex: "nan",
+      };
+      //   Object.defineProperty(person, "age", {
+      //     value: 18,
+      //     enumerable: true, //是否可以枚举，默认FALSE
+      //     writable: true, //是否可以修改，默认false
+      //     configurable: true, //是否可以删除，默认false
+      //   });
+      Object.defineProperty(person, "age", {
+        get() {
+          console.log("有人读取了age属性");
+          return number;
+        },
+        set(value) {
+          console.log("有人修改了age属性，且值是", value);
+          number = value;
+        },
+      });
+    </script>
+  </body>
+</html>

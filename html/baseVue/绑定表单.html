@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="/js/config/vue.js"></script>
+    <title>绑定表单</title>
+
+  </head>
+  <body>
+    <div id="app">
+      <form @submit.prevent="demo">
+        account<input type="text" v-model="Userform.account" /> 
+        <br /><br />
+        password<input type="password" v-model="Userform.password"/>
+        <br /><br />
+        <!-- 数字收集 -->
+        age<input type="number" v-model.number="Userform.age"/>
+        <br /><br />
+        sex 
+        <br /><br />
+        男<input type="radio" v-model="Userform.sex" value="男" /> 
+        女<input type="radio" v-model="Userform.sex" value="女" />
+        <br><br>
+        hobby
+        <br><br>
+        <input type="checkbox" v-model="Userform.hobby" value="basketball">basketball
+        <input type="checkbox" v-model="Userform.hobby" value="football">football
+        <input type="checkbox" v-model="Userform.hobby" value="pingpang">pingpang
+        <input type="checkbox" v-model="Userform.hobby" value="swiming">swiming
+        <br><br>
+        city
+        <select v-model="Userform.city">
+            <option value="">please select city</option>
+            <option value="beijing">bei jing</option>
+            <option value="shanghai">shang hai</option>
+            <option value="chengdu">cheng du</option>
+            <option value="xian">xi an</option>
+        </select>
+        <br><br>
+        othersInfo
+        <!-- .lazy非实时收集 -->
+        <textarea v-model.lazy="Userform.other"></textarea>
+        <br><br>
+        <input type="checkbox" v-model="Userform.agree">阅读并接受<a href="www.baidu.com">《用户协议》</a>
+        <br><br>
+        <button>submit</button>
+    </form>
+    </div>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data() {
+          return {
+            Userform: {
+              account: "",
+              password: "",
+              age:'',
+              sex: "",
+              hobby: [],
+              city: "",
+              other: "",
+              agree: false,
+            },
+          };
+        },
+        methods: {
+            demo(){
+                console.log(JSON.stringify(this.Userform));
+            }
+        },
+      });
+    </script>
+  </body>
+</html>

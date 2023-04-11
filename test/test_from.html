@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+  </head>
+
+  <body>
+    <div id="app">
+      <div class="detail">
+        <table>
+          <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>sex</th>
+            <th>age</th>
+            <th>interests</th>
+            <th>optioner</th>
+          </tr>
+          <tr v-for="(student,index) in students">
+            <td v-for="item in student">{{item}}</td>
+            <td>
+              <button @click="del(index)">删除</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            upFlag: false,
+            addFlag: true,
+            student: {
+              id: "",
+              name: "",
+              age: 0,
+              sex: "",
+              interests: "",
+            },
+            students: [
+              {
+                id: "102233114",
+                name: "zhangsan",
+                age: 18,
+                sex: "男",
+                interests: "篮球 羽毛球",
+              },
+              {
+                id: "102233115",
+                name: "lishi",
+                age: 18,
+                sex: "男",
+                interests: "乒乓球 高尔夫",
+              },
+              {
+                id: "102233116",
+                name: "lucy",
+                age: 15,
+                sex: "女",
+                interests: "篮球 骑行",
+              },
+              {
+                id: "102233117",
+                name: "lucy",
+                age: 15,
+                sex: "女",
+                interests: "乒乓球 足球",
+              },
+            ],
+          };
+        },
+        methods: {
+          del(index) {
+            this.students.splice(index, 1);
+          },
+        },
+      });
+    </script>
+  </body>
+  <style>
+    .detail {
+      width: 100%;
+      height: auto;
+      margin: auto;
+      background-color: rgb(233, 251, 31);
+    }
+
+    table {
+      width: 100%;
+      /* 边框折叠（只会出现一次边框） */
+      border-collapse: collapse;
+      /* 边框间距（只有不折叠时才有效果） */
+      /* border-spacing: 10px 10px; */
+    }
+
+    tr:nth-child(even) {
+      background-color: lightgray;
+    }
+
+    th,
+    td {
+      border: 1px solid black;
+      height: 50px;
+    }
+  </style>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../../js/config/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" placeholder="按回车" @keydown="mess" />
+      <br /><br />
+      <span>姓：</span>
+      <input type="text" v-model="firstName" /><br /><br />
+      <span>名：</span>
+      <input type="text" v-model="lastName" /><br /><br />
+      <span>全名：{{firstName}}-{{lastName}}</span>
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data() {
+          return {
+            firstName: "",
+            lastName: "",
+          };
+        },
+        methods: {
+          mess(event) {
+            console.log(event.key, event.keyCode);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

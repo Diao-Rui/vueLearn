@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 给标签中原本有的属性绑定，绑定之后就可以在里面插入js代码或者vue对象 -->
+      <!-- 插入vue对象 -->
+      <input type="text" v-bind:value="msg" />
+      <br />
+      <!-- 插入三目运算符 -->
+      <input type="text" v-bind:placeholder="flag?'true':'false'" />
+      <br />
+      <!-- 插入表达式 -->
+      <input type="text" v-bind:value="1===2" />
+      <br />
+      <input type="text" v-bind:value="inputs===''?'请输入数据':inputs" />
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data() {
+          return {
+            msg: "hello world",
+            flag: false,
+            inputs: "123",
+          };
+        },
+      });
+    </script>
+  </body>
+</html>

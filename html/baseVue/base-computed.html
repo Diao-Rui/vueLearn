@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../../js/config/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      性：<input type="text" /><br /><br />
+      名：<input type="text" /><br /><br />
+      <p>全名：{{fullName}}</p>
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data() {
+          return {
+            firstName: "",
+            lastName: "",
+          };
+        },
+        computed: {
+          fullName: {
+            // get有什么作用，当有人读取fullName，get就会被调用，且返回值就作为fullName的值
+            // get什么时候调用？1.初次读取fullName时。2.所依赖的数据发生变化时。
+            // get的数据存在缓存中
+            get() {
+              return this.firstName + "-" + this.lastName;
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+const date = new Date(1618708103);
+let str = "";
+if (date.getHours < 10) str += "0" + date.getHours();
+else str += date.getHours();
+str += ":";
+if (date.getMinutes() < 10) str += "0" + date.getMinutes();
+else str += date.getMinutes();
+str += ":";
+if (date.getSeconds() < 10) str += "0" + date.getSeconds();
+else str += date.getSeconds();
+console.log(str);

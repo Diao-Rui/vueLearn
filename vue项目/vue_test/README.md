@@ -1,5 +1,5 @@
 # vue_test
-
+这是一个简单的vue项目，该项目中对于所有的代码都加入了合适的注释，让读者能够很轻松的理解代码
 ## Project setup
 ```
 npm install
